@@ -3264,4 +3264,59 @@ blockquote {
         max-width: 100%;
     }
 }
+/* Uploaded BJP Lotus Logo */
+.lotus-logo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
+.brand-lotus {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+}
+
+.party-lotus {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.hero-lotus-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-lotus {
+    width: 58px;
+    height: 58px;
+    overflow: hidden;
+}
+
+.footer-lotus-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .brand-lotus {
+        width: 42px;
+        height: 42px;
+    }
+
+    .party-lotus {
+        width: 68px;
+        height: 68px;
+    }
+
+    .footer-lotus {
+        width: 52px;
+        height: 52px;
+    }
+}
