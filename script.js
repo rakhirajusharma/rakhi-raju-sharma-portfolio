@@ -1,4 +1,147 @@
 /* ==================================================
+   ACTUAL GITHUB PHOTO NAME FIX
+================================================== */
+
+const actualPhotoNames = {
+    "1000006887.jpg": "IMG-20260818-WA0016.jpg",
+
+    "1000006925.jpg": "IMG-20260818-WA0035.jpg",
+    "1000006927.jpg": "IMG-20260818-WA0036.jpg",
+    "1000006929.jpg": "IMG-20260818-WA0037.jpg",
+    "1000006931.jpg": "IMG-20260818-WA0038.jpg",
+    "1000006933.jpg": "IMG-20260818-WA0039.jpg",
+    "1000006935.jpg": "IMG-20260818-WA0040.jpg",
+    "1000006937.jpg": "IMG-20260818-WA0041.jpg",
+    "1000006939.jpg": "IMG-20260818-WA0042.jpg",
+    "1000006941.jpg": "IMG-20260818-WA0043.jpg",
+    "1000006943.jpg": "IMG-20260818-WA0044.jpg",
+    "1000006945.jpg": "IMG-20260818-WA0045.jpg",
+    "1000006947.jpg": "IMG-20260818-WA0046.jpg",
+    "1000006949.jpg": "IMG-20260818-WA0047.jpg",
+    "1000006951.jpg": "IMG-20260818-WA0048.jpg",
+    "1000006953.jpg": "IMG-20260818-WA0049.jpg",
+    "1000006955.jpg": "IMG-20260818-WA0050.jpg",
+
+    "1000006959.jpg": "IMG-20260818-WA0052.jpg",
+    "1000006961.jpg": "IMG-20260818-WA0053.jpg",
+    "1000006963.jpg": "IMG-20260818-WA0054.jpg",
+
+    "1000006967.jpg": "IMG-20260818-WA0056.jpg",
+    "1000006971.jpg": "IMG-20260818-WA0058.jpg",
+    "1000006973.jpg": "IMG-20260818-WA0059.jpg",
+    "1000006975.jpg": "IMG-20260818-WA0060.jpg",
+    "1000006977.jpg": "IMG-20260818-WA0061.jpg",
+    "1000006979.jpg": "IMG-20260818-WA0062.jpg",
+    "1000006981.jpg": "IMG-20260818-WA0063.jpg",
+    "1000006983.jpg": "IMG-20260818-WA0064.jpg",
+    "1000006985.jpg": "IMG-20260818-WA0065.jpg",
+    "1000006987.jpg": "IMG-20260818-WA0066.jpg",
+    "1000006989.jpg": "IMG-20260818-WA0067.jpg",
+    "1000006991.jpg": "IMG-20260818-WA0068.jpg",
+    "1000006993.jpg": "IMG-20260818-WA0069.jpg",
+    "1000006995.jpg": "IMG-20260818-WA0070.jpg",
+    "1000006997.jpg": "IMG-20260818-WA0071.jpg",
+    "1000006999.jpg": "IMG-20260818-WA0072.jpg",
+    "1000007001.jpg": "IMG-20260818-WA0073.jpg",
+    "1000007003.jpg": "IMG-20260818-WA0074.jpg",
+    "1000007005.jpg": "IMG-20260818-WA0075.jpg",
+    "1000007007.jpg": "IMG-20260818-WA0076.jpg",
+    "1000007009.jpg": "IMG-20260818-WA0077.jpg",
+
+    "1000007011.jpg": "IMG-20260818-WA0078.jpg",
+    "1000007013.jpg": "IMG-20260818-WA0079.jpg",
+    "1000007015.jpg": "IMG-20260818-WA0080.jpg",
+    "1000007017.jpg": "IMG-20260818-WA0081.jpg",
+    "1000007019.jpg": "IMG-20260818-WA0082.jpg",
+    "1000007021.jpg": "IMG-20260818-WA0083.jpg",
+    "1000007023.jpg": "IMG-20260818-WA0084.jpg",
+    "1000007025.jpg": "IMG-20260818-WA0085.jpg",
+    "1000007027.jpg": "IMG-20260818-WA0086.jpg",
+    "1000007029.jpg": "IMG-20260818-WA0087.jpg",
+    "1000007031.jpg": "IMG-20260818-WA0088.jpg",
+    "1000007033.jpg": "IMG-20260818-WA0089.jpg",
+    "1000007035.jpg": "IMG-20260818-WA0090.jpg",
+    "1000007037.jpg": "IMG-20260818-WA0091.jpg",
+    "1000007039.jpg": "IMG-20260818-WA0092.jpg",
+    "1000007041.jpg": "IMG-20260818-WA0093.jpg",
+    "1000007043.jpg": "IMG-20260818-WA0094.jpg",
+    "1000007045.jpg": "IMG-20260818-WA0095.jpg",
+    "1000007047.jpg": "IMG-20260818-WA0096.jpg"
+};
+
+function getActualPhotoPath(oldPath) {
+    if (!oldPath) return oldPath;
+
+    const oldFileName = oldPath.split("/").pop();
+    const actualFileName = actualPhotoNames[oldFileName];
+
+    return actualFileName
+        ? `images/${actualFileName}`
+        : oldPath;
+}
+
+function correctExistingPhotoNames(root = document) {
+    root.querySelectorAll("img[src]").forEach((image) => {
+        const correctedPath = getActualPhotoPath(
+            image.getAttribute("src")
+        );
+
+        if (
+            correctedPath &&
+            correctedPath !== image.getAttribute("src")
+        ) {
+            image.setAttribute("src", correctedPath);
+        }
+    });
+
+    root.querySelectorAll("[data-lightbox-image]")
+        .forEach((element) => {
+            const correctedPath = getActualPhotoPath(
+                element.dataset.lightboxImage
+            );
+
+            if (correctedPath) {
+                element.dataset.lightboxImage =
+                    correctedPath;
+            }
+        });
+}
+
+correctExistingPhotoNames();
+
+const photoNameObserver = new MutationObserver(
+    (mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (!(node instanceof Element)) {
+                    return;
+                }
+
+                if (node.matches("img[src]")) {
+                    const correctedPath =
+                        getActualPhotoPath(
+                            node.getAttribute("src")
+                        );
+
+                    if (correctedPath) {
+                        node.setAttribute(
+                            "src",
+                            correctedPath
+                        );
+                    }
+                }
+
+                correctExistingPhotoNames(node);
+            });
+        });
+    }
+);
+
+photoNameObserver.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+/* ==================================================
    RAKHI RAJU SHARMA PORTFOLIO
    Interactive Website Script
 ================================================== */
