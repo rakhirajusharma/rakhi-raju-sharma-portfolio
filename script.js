@@ -68,6 +68,27 @@ const actualPhotoNames = {
     "1000007045.jpg": "IMG-20260818-WA0095.jpg",
     "1000007047.jpg": "IMG-20260818-WA0096.jpg"
 };
+Object.assign(actualPhotoNames, {
+    "1000006889.jpg": "IMG-20260818-WA0017.jpg",
+    "1000006891.jpg": "IMG-20260818-WA0018.jpg",
+    "1000006893.jpg": "IMG-20260818-WA0019.jpg",
+    "1000006895.jpg": "IMG-20260818-WA0020.jpg",
+    "1000006897.jpg": "IMG-20260818-WA0021.jpg",
+    "1000006899.jpg": "IMG-20260818-WA0022.jpg",
+    "1000006901.jpg": "IMG-20260818-WA0023.jpg",
+    "1000006903.jpg": "IMG-20260818-WA0024.jpg",
+    "1000006905.jpg": "IMG-20260818-WA0025.jpg",
+    "1000006907.jpg": "IMG-20260818-WA0026.jpg",
+    "1000006909.jpg": "IMG-20260818-WA0027.jpg",
+    "1000006911.jpg": "IMG-20260818-WA0028.jpg",
+    "1000006913.jpg": "IMG-20260818-WA0029.jpg",
+    "1000006915.jpg": "IMG-20260818-WA0030.jpg",
+    "1000006917.jpg": "IMG-20260818-WA0031.jpg",
+    "1000006919.jpg": "IMG-20260818-WA0032.jpg",
+    "1000006921.jpg": "IMG-20260818-WA0033.jpg",
+    "1000006923.jpg": "IMG-20260818-WA0034.jpg",
+    "1000006965.jpg": "IMG-20260818-WA0055.jpg"
+});
 
 function getActualPhotoPath(oldPath) {
     if (!oldPath) return oldPath;
