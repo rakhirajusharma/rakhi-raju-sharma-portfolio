@@ -1485,10 +1485,10 @@ function getLightboxItemDetails(item) {
             );
 
     return {
-        image: item.image,
-        caption,
-        category
-    };
+    image: getActualPhotoPath(item.image),
+    caption,
+    category
+};
 }
 
 /* ==================================================
